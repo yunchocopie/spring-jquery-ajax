@@ -1,5 +1,6 @@
 package shop.mtcoding.blog.board;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardApiController {
     private final BoardRepository boardRepository;
+    private final HttpServletRequest servletRequest;
+
+    @PutMapping("/api/boards/{id}")
+    public ApiUtil<?> update(@PathVariable Integer id, @RequestBody BoardRequest.UpdateDTO requestDTO){
+        boardRepository.update(requestDTO, id);
+        return new ApiUtil<>(null);
+    }
 
     @PostMapping("/api/boards")
     public ApiUtil<?> write(@RequestBody BoardRequest.WriteDTO requestDTO) {

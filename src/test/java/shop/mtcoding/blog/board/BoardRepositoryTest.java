@@ -54,7 +54,7 @@ public class BoardRepositoryTest {
         BoardRequest.WriteDTO requestDTO = new BoardRequest.WriteDTO();
         requestDTO.setTitle("제목10");
         requestDTO.setContent("내용10");
-        requestDTO.setAutuor("이순신");
+        requestDTO.setAuthor("이순신");
 
         
         // when

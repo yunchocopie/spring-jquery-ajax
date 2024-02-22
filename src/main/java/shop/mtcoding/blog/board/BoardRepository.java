@@ -37,7 +37,7 @@ public class BoardRepository {
         Query query = em.createNativeQuery("insert into board_tb(title, content, author) values(?, ?, ?)");
         query.setParameter(1, requestDTO.getTitle());
         query.setParameter(2, requestDTO.getContent());
-        query.setParameter(3, requestDTO.getAutuor());
+        query.setParameter(3, requestDTO.getAuthor());
 
         query.executeUpdate();
     }
@@ -45,6 +45,16 @@ public class BoardRepository {
     public void deleteById(Integer id) {
         Query query = em.createNativeQuery("delete from board_tb where id = ?");
         query.setParameter(1, id);
+        query.executeUpdate();
+    }
+    @Transactional
+    public void update(BoardRequest.UpdateDTO requestDTO, Integer id) {
+        Query query = em.createNativeQuery("update board_tb set author = ?, title = ?, content = ? where id = ?");
+        query.setParameter(1, requestDTO.getAuthor());
+        query.setParameter(2, requestDTO.getTitle());
+        query.setParameter(3, requestDTO.getContent());
+        query.setParameter(4, id);
+
         query.executeUpdate();
     }
 }

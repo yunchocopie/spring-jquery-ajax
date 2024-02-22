@@ -8,6 +8,13 @@ public class BoardRequest {
     public static class WriteDTO {
         private String title;
         private String content;
-        private String autuor;
+        private String author;
+    }
+
+    @Data
+    public static class UpdateDTO {
+        private String title;
+        private String content;
+        private String author;
     }
 }
